@@ -1,5 +1,11 @@
 {
+  "name": "hydro-homie",
+  "version": "1.0.0",
+  "main": "index.js",
+  "description": "Bot which helps you set a water quota, keeps track of the amount of water you have drank, and reminds you if you are failing to meet your quota.",
+  "author": "micpap25",
   "dependencies": {
+    "@discordjs/builders": "^0.11.0",
     "@discordjs/rest": "^0.2.0-canary.0",
     "bufferutil": "^4.0.6",
     "discord-api-types": "^0.26.1",
