@@ -1,4 +1,5 @@
 const fs = require("fs");
+const Sequelize = require("sequelize");
 const { Client, Collection, Intents } = require("discord.js");
 
 const { token } = require("./config.json");
@@ -27,15 +28,39 @@ for (const file of eventFiles) {
   }
 }
 
+const sequelize = new Sequelize("database", "user", "password", {
+  host: "localhost",
+  dialect: "sqlite",
+  logging: false,
+  // SQLite only
+  storage: "database.sqlite",
+});
+
+const users = sequelize.define('users', {
+	username: Sequelize.STRING,
+  time: Sequelize.DATE,
+  quota: Sequelize.INTEGER,
+  ping: Sequelize.SMALLINT
+});
+
+client.once('ready', c => {
+	console.log(`Ready! Logged in as ${c.user.tag}`);
+  users.sync();
+});
+
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
 
   const command = client.commands.get(interaction.commandName);
 
   if (!command) return;
+  
+  console.log(
+    `${interaction.user.tag} in #${interaction.channel.name} triggered an interaction.`
+  );
 
   try {
-    await command.execute(interaction);
+    await command.execute(interaction, users);
   } catch (error) {
     console.error(error);
     await interaction.reply({

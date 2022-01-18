@@ -15,11 +15,11 @@ module.exports = {
             .setRequired(true)
         )
     ),
-  async execute(interaction) {
+  async execute(interaction, users) {
     if (interaction.options.getSubcommand() == "repeat") {
       var str = "";
       var count = interaction.options.getInteger("pongs");
-	  if (count > 10) count = 10;
+      if (count > 10) count = 10;
       for (var i = 0; i < count; i++) {
         str += "Pong! ";
       }
