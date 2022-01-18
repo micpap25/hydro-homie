@@ -38,8 +38,8 @@ const sequelize = new Sequelize("database", "user", "password", {
 
 const users = sequelize.define('users', {
 	username: Sequelize.STRING,
-  time: Sequelize.DATE,
   quota: Sequelize.INTEGER,
+  time: Sequelize.DATE,
   ping: Sequelize.SMALLINT
 });
 
