@@ -1,3 +1,5 @@
+// TODO: Add commands, give user role once registered, set up sqlite3 stuff
+https://github.com/micpap25/doppler-effect
 const fs = require("fs");
 const Sequelize = require("sequelize");
 const { Client, Collection, Intents } = require("discord.js");
