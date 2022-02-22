@@ -32,14 +32,15 @@ const sequelize = new Sequelize("database", "user", "password", {
   host: "localhost",
   dialect: "sqlite",
   logging: false,
-  // SQLite only
   storage: "database.sqlite",
 });
 
+// Temporarily storing time as an integer for simplicity,
+// will find out how to turn into a dateless time later
 const users = sequelize.define('users', {
 	username: Sequelize.STRING,
   quota: Sequelize.INTEGER,
-  time: Sequelize.DATE,
+  time: Sequelize.INTEGER,
   ping: Sequelize.SMALLINT
 });
 
